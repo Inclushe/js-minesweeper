@@ -1,0 +1,52 @@
+body {
+  font-family: monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+board {
+  overflow: hidden;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+div.square {
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+  margin: 2px;
+  background-color: #fafafa;
+  border-radius: 15%;
+  box-shadow: inset 0px 0px 2px 2px #e8e8e8;
+  transition: 50ms;
+  line-height: 30px;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+div.square:hover {
+  box-shadow: inset 0px 0px 2px 2px #ccc;
+}
+
+div.square.activated {
+  background-color: #ccc;
+  box-shadow: none;
+}
+
+div.square.flag {
+  border: 3px solid red;
+}
+
+div.square.question {
+  border: 3px solid blue;
+}
+
+div.square.mine {
+  background-color: red !important;
+}
