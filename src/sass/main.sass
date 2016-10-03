@@ -1,3 +1,5 @@
+@import colors/material
+
 body
   font-family: monospace
 
@@ -25,7 +27,7 @@ div.square
   &:hover
     box-shadow: inset 0px 0px 2px 2px #ccc
   &.activated
-    background-color: #ccc
+    background-color: #eee
     box-shadow: none
   &.flag
     border: 3px solid red
@@ -33,3 +35,20 @@ div.square
     border: 3px solid blue
   &.mine
     background-color: red !important
+  &[data-neighbors="1"]
+    color: $light-blue
+  &[data-neighbors="2"]
+    color: $blue
+  &[data-neighbors="3"]
+    color: $light-green
+  &[data-neighbors="4"]
+    color: $green
+  &[data-neighbors="5"]
+    color: $yellow700
+  &[data-neighbors="6"]
+    color: $orange
+  &[data-neighbors="7"]
+    color: $red
+  &[data-neighbors="8"]
+    color: $purple
+  

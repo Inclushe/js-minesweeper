@@ -35,7 +35,7 @@ div.square:hover {
 }
 
 div.square.activated {
-  background-color: #ccc;
+  background-color: #eee;
   box-shadow: none;
 }
 
@@ -49,4 +49,36 @@ div.square.question {
 
 div.square.mine {
   background-color: red !important;
+}
+
+div.square[data-neighbors="1"] {
+  color: #03a9f4;
+}
+
+div.square[data-neighbors="2"] {
+  color: #2196f3;
+}
+
+div.square[data-neighbors="3"] {
+  color: #8bc34a;
+}
+
+div.square[data-neighbors="4"] {
+  color: #4caf50;
+}
+
+div.square[data-neighbors="5"] {
+  color: #fbc02d;
+}
+
+div.square[data-neighbors="6"] {
+  color: #ff9800;
+}
+
+div.square[data-neighbors="7"] {
+  color: #f44336;
+}
+
+div.square[data-neighbors="8"] {
+  color: #9c27b0;
 }

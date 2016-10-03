@@ -1,24 +1,26 @@
 'use strict'
 
-var Minesweeper = function (element) {
-  this.status = 'intializing'
+var Minesweeper = function (obj) {
+  this.status = ''
   /* eslint-disable no-multi-spaces */
   this.directions = [[-1, -1], [-1, 0], [-1, 1],
-                     [0, -1],          [0, 1],
-                     [1, -1], [1, 0], [1, 1]]
+                     [0,  -1],          [0,  1],
+                     [1,  -1], [1,  0], [1,  1]]
   /* eslint-enable no-multi-spaces */
-  this.height = 10
-  this.width = 10
-  this.mines = 15
+  this.height = obj.height || 10
+  this.width = obj.height || 10
+  this.mines = obj.mines || 15
   this.grid = []
-  this.location = document.querySelector(element)
+  this.location = document.querySelector(obj.location || '#board')
   this.location.addEventListener('mouseup', function (e) {
     if (e.target.id) {
       if (e.which === 1) {
-        if (this.status !== 'playing') {
+        if (this.status === 'intializing') {
           this.add_mines(this.id_to_pos(e.target.id))
         } else if (this.status === 'playing') {
           this.check(this.id_to_pos(e.target.id), false, true)
+        } else if (this.status === 'won' || this.status === 'lost') {
+          this.init()
         }
         console.log('left click on ' + e.target.id)
       } else if (e.which === 3) {
@@ -36,6 +38,9 @@ var Minesweeper = function (element) {
 
 Minesweeper.prototype.init = function () {
   var h, w
+  this.status = 'intializing'
+  this.location.innerHTML = ''
+  this.grid = []
   for (h = 0; h < this.height; h++) {
     var row = []
     for (w = 0; w < this.width; w++) {
@@ -106,7 +111,8 @@ Minesweeper.prototype.check = function (pos, checking, clicked) {
       if (cur.mine) {
         if (!checking) {
           this.pos_to_element(pos).classList.add('mine')
-          // window.alert('You lost!')
+          console.log('You lost!')
+          this.status = 'lost'
         } else {
           return true
         }
@@ -127,6 +133,7 @@ Minesweeper.prototype.check = function (pos, checking, clicked) {
           }.bind(this))
         } else {
           this.pos_to_element(pos).innerHTML = neighbors
+          this.pos_to_element(pos).dataset.neighbors = neighbors
           this.pos_to_element(pos).classList.add('activated')
           this.grid[y][x].activated = true
         }
@@ -185,7 +192,9 @@ Minesweeper.prototype.check_win_state = function () {
   }
 
   if (all_non_mine_squares_activated || all_flags_set) {
-    window.alert('Congradtlations! You won!')
+    window.alert('Congratulations! You won!')
+    console.log('You won!')
+    this.status = 'won'
   }
 }
 
@@ -216,5 +225,8 @@ var Square = function () {
   this.question = false
 }
 
-var Game = new Minesweeper('#board')
+var Game = new Minesweeper({ 'location': '#board',
+                             'height': 15,
+                             'width': 15,
+                             'mines': 20 })
 Game.init()
