@@ -59,8 +59,8 @@ div.square.flag::after {
   width: 30px;
   background-image: url("/images/flag.png");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: middle;
+  background-size: 20px 20px;
+  background-position: center;
 }
 
 div.square.question::after {
