@@ -1,13 +1,25 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono';
 body {
-  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', monospace;
+  overflow: hidden;
 }
 
 * {
   box-sizing: border-box;
 }
 
-board {
-  overflow: hidden;
+.board_container {
+  position: absolute;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   width: 100%;
 }
 
@@ -22,7 +34,7 @@ div.square {
   margin: 2px;
   background-color: #fafafa;
   border-radius: 15%;
-  box-shadow: inset 0px 0px 2px 2px #e8e8e8;
+  box-shadow: inset 0px -2px 2px 0px #e8e8e8;
   transition: 50ms;
   line-height: 30px;
   text-align: center;
@@ -30,8 +42,8 @@ div.square {
   cursor: pointer;
 }
 
-div.square:hover {
-  box-shadow: inset 0px 0px 2px 2px #ccc;
+div.square:active {
+  box-shadow: inset 0px 0px 2px 0px #e8e8e8;
 }
 
 div.square.activated {
@@ -39,46 +51,59 @@ div.square.activated {
   box-shadow: none;
 }
 
-div.square.flag {
-  border: 3px solid red;
+div.square.flag::after {
+  content: '';
+  position: absolute;
+  margin-left: -15px;
+  height: 30px;
+  width: 30px;
+  background-image: url("/images/flag.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: middle;
 }
 
-div.square.question {
-  border: 3px solid blue;
+div.square.question::after {
+  content: '?';
+  font-weight: bold;
+  font-size: 25px;
+  color: #2196f3;
 }
 
 div.square.mine {
   background-color: red !important;
+  border-radius: 50%;
+  box-shadow: none;
 }
 
-div.square[data-neighbors="1"] {
+div.square[data-neighbors='1'] {
   color: #03a9f4;
 }
 
-div.square[data-neighbors="2"] {
-  color: #2196f3;
+div.square[data-neighbors='2'] {
+  color: #1976d2;
 }
 
-div.square[data-neighbors="3"] {
+div.square[data-neighbors='3'] {
   color: #8bc34a;
 }
 
-div.square[data-neighbors="4"] {
+div.square[data-neighbors='4'] {
   color: #4caf50;
 }
 
-div.square[data-neighbors="5"] {
-  color: #fbc02d;
+div.square[data-neighbors='5'] {
+  color: #f9a825;
 }
 
-div.square[data-neighbors="6"] {
-  color: #ff9800;
+div.square[data-neighbors='6'] {
+  color: #f57c00;
 }
 
-div.square[data-neighbors="7"] {
+div.square[data-neighbors='7'] {
   color: #f44336;
 }
 
-div.square[data-neighbors="8"] {
+div.square[data-neighbors='8'] {
   color: #9c27b0;
 }

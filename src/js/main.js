@@ -228,5 +228,5 @@ var Square = function () {
 var Game = new Minesweeper({ 'location': '#board',
                              'height': 15,
                              'width': 15,
-                             'mines': 20 })
+                             'mines': 35 })
 Game.init()

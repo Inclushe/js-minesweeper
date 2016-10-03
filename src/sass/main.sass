@@ -1,14 +1,30 @@
 @import colors/material
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono'
 
 body
-  font-family: monospace
+  margin: 0
+  padding: 0
+  font-family: 'Roboto Mono', monospace
+  overflow: hidden
 
 *
   box-sizing: border-box
 
-board
-  overflow: hidden
+.board_container
+  position: absolute
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flex
+  display: -o-flex
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
   width: 100%
+
+board
+  //overflow: hidden
+  //width: 100%
 .row
   display: flex
 div.square
@@ -18,37 +34,51 @@ div.square
   margin: 2px
   background-color: #fafafa
   border-radius: 15%
-  box-shadow: inset 0px 0px 2px 2px #e8e8e8
+  box-shadow: inset 0px -2px 2px 0px #e8e8e8
   transition: 50ms
   line-height: 30px
   text-align: center
   font-size: 20px
   cursor: pointer
-  &:hover
-    box-shadow: inset 0px 0px 2px 2px #ccc
+  &:active
+    box-shadow: inset 0px 0px 2px 0px #e8e8e8
   &.activated
     background-color: #eee
     box-shadow: none
-  &.flag
-    border: 3px solid red
-  &.question
-    border: 3px solid blue
+  &.flag::after
+    content: ''
+    position: absolute
+    //margin-top: 0px
+    margin-left: -15px
+    height: 30px
+    width: 30px
+    background-image: url('/images/flag.png')
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: middle
+  &.question::after
+    content: '?'
+    font-weight: bold
+    font-size: 25px
+    color: $blue500
   &.mine
     background-color: red !important
-  &[data-neighbors="1"]
+    border-radius: 50%
+    box-shadow: none
+  &[data-neighbors='1']
     color: $light-blue
-  &[data-neighbors="2"]
-    color: $blue
-  &[data-neighbors="3"]
+  &[data-neighbors='2']
+    color: $blue700
+  &[data-neighbors='3']
     color: $light-green
-  &[data-neighbors="4"]
+  &[data-neighbors='4']
     color: $green
-  &[data-neighbors="5"]
-    color: $yellow700
-  &[data-neighbors="6"]
-    color: $orange
-  &[data-neighbors="7"]
+  &[data-neighbors='5']
+    color: $yellow800
+  &[data-neighbors='6']
+    color: $orange700
+  &[data-neighbors='7']
     color: $red
-  &[data-neighbors="8"]
+  &[data-neighbors='8']
     color: $purple
   
