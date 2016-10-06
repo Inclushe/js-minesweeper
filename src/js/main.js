@@ -13,7 +13,7 @@ var Minesweeper = function (obj) {
   this.grid = []
   this.location = document.querySelector(obj.location || '#board')
   this.location.addEventListener('mouseup', function (e) {
-    if (e.target.id) {
+    if (e.target.id.match(/square.*/)) {
       if (e.which === 1) {
         if (this.status === 'intializing') {
           this.add_mines(this.id_to_pos(e.target.id))
@@ -113,6 +113,7 @@ Minesweeper.prototype.check = function (pos, checking, clicked) {
           this.pos_to_element(pos).classList.add('mine')
           console.log('You lost!')
           this.status = 'lost'
+          Game.show_message('You lost!', 'Reset')          
         } else {
           return true
         }
@@ -230,3 +231,18 @@ var Game = new Minesweeper({ 'location': '#board',
                              'width': 15,
                              'mines': 35 })
 Game.init()
+Game.add_mines([Math.floor(Game.height / 2), Math.floor(Game.width / 2)])
+
+Minesweeper.prototype.show_message = function (message, button_message) {
+  var dialog_element = document.createElement('div')
+  dialog_element.id = 'message'
+  var dialog_message_element = document.createElement('div')
+  dialog_message_element.appendChild(document.createTextNode(message))
+  dialog_element.appendChild(dialog_message_element)
+  var dialog_button_element = document.createElement('button')
+  dialog_button_element.appendChild(document.createTextNode(button_message))
+  dialog_element.appendChild(dialog_button_element)
+  this.location.appendChild(dialog_element)
+}
+
+//Game.show_message('Minesweeper in Javascript', 'Continue')

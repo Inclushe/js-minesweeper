@@ -23,11 +23,11 @@ body {
   width: 100%;
 }
 
-.row {
+#board .row {
   display: flex;
 }
 
-div.square {
+#board div.square {
   height: 30px;
   width: 30px;
   overflow: hidden;
@@ -42,68 +42,89 @@ div.square {
   cursor: pointer;
 }
 
-div.square:active {
+#board div.square:active {
   box-shadow: inset 0px 0px 2px 0px #e8e8e8;
 }
 
-div.square.activated {
+#board div.square.activated {
   background-color: #eee;
   box-shadow: none;
 }
 
-div.square.flag::after {
+#board div.square.flag::after {
   content: '';
   position: absolute;
   margin-left: -15px;
   height: 30px;
   width: 30px;
-  background-image: url("/images/flag.png");
+  background-image: url("../images/flag.png");
   background-repeat: no-repeat;
   background-size: 20px 20px;
   background-position: center;
 }
 
-div.square.question::after {
+#board div.square.question::after {
   content: '?';
   font-weight: bold;
   font-size: 25px;
   color: #2196f3;
 }
 
-div.square.mine {
+#board div.square.mine {
   background-color: red !important;
   border-radius: 50%;
   box-shadow: none;
 }
 
-div.square[data-neighbors='1'] {
+#board div.square[data-neighbors='1'] {
   color: #03a9f4;
 }
 
-div.square[data-neighbors='2'] {
+#board div.square[data-neighbors='2'] {
   color: #1976d2;
 }
 
-div.square[data-neighbors='3'] {
+#board div.square[data-neighbors='3'] {
   color: #8bc34a;
 }
 
-div.square[data-neighbors='4'] {
+#board div.square[data-neighbors='4'] {
   color: #4caf50;
 }
 
-div.square[data-neighbors='5'] {
+#board div.square[data-neighbors='5'] {
   color: #f9a825;
 }
 
-div.square[data-neighbors='6'] {
+#board div.square[data-neighbors='6'] {
   color: #f57c00;
 }
 
-div.square[data-neighbors='7'] {
+#board div.square[data-neighbors='7'] {
   color: #f44336;
 }
 
-div.square[data-neighbors='8'] {
+#board div.square[data-neighbors='8'] {
   color: #9c27b0;
+}
+
+#message {
+  position: absolute;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 50px;
+  width: auto;
+  background: #ef5350;
+  line-height: 50px;
+  border-radius: 10%;
+}
+
+#message * {
+  display: inline-block;
+}
+
+#message button {
+  border: none;
+  font: inherit;
 }
