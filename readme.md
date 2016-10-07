@@ -5,8 +5,12 @@
 ![Minesweeper](http://i.imgur.com/OBopTf6.png)
 
 Plays exactly like Minesweeper.
+
 Left click digs, right click flags possible mines.
+
 Don't know how to play Minesweeper? [Google it.](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=Minesweeper+rules)
+
+
 
 ### Todo:
 - [ ] - Add mobile support
