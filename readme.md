@@ -1,5 +1,7 @@
 # Minesweeper
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 ### Live demo here: [inclushe.github.io/js-minesweeper/src/index.html](https://inclushe.github.io/js-minesweeper/src/index.html)
 
 ![Minesweeper](http://i.imgur.com/OBopTf6.png)
