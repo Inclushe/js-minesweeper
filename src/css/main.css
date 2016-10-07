@@ -72,8 +72,12 @@ body {
 
 #board div.square.mine {
   background-color: red !important;
-  border-radius: 50%;
   box-shadow: none;
+}
+
+#board div.square.mine::after {
+  content: 'X';
+  color: white;
 }
 
 #board div.square[data-neighbors='1'] {
@@ -126,5 +130,5 @@ body {
 
 #message button {
   border: none;
-  font: inherit;
+  font-family: inherit;
 }

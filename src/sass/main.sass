@@ -61,8 +61,11 @@ body
       color: $blue500
     &.mine
       background-color: red !important
-      border-radius: 50%
       box-shadow: none
+      &::after
+        content: 'X'
+        color: white
+
     &[data-neighbors='1']
       color: $light-blue
     &[data-neighbors='2']
@@ -94,4 +97,4 @@ body
     display: inline-block
   button
     border: none
-    font: inherit
+    font-family: inherit
