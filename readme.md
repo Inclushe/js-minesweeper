@@ -1,4 +1,6 @@
-[ ] - Fix dialog box
-[ ] - Add title and info
-[ ] - Add function that shows all mines when you lose
+[X] - Fix dialog box
+[ ] - Add info
+[X] - Add function that shows all mines when you lose
 [ ] - Simplify syntax
+[ ] - Add readme documentation
+[ ] - Add style just for the board?

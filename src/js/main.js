@@ -19,8 +19,6 @@ var Minesweeper = function (obj) {
           this.add_mines(this.id_to_pos(e.target.id))
         } else if (this.status === 'playing') {
           this.check(this.id_to_pos(e.target.id), false, true)
-        } else if (this.status === 'won' || this.status === 'lost') {
-          this.init()
         }
         console.log('left click on ' + e.target.id)
       } else if (e.which === 3) {
@@ -34,6 +32,7 @@ var Minesweeper = function (obj) {
   this.location.addEventListener('contextmenu', function (e) {
     e.preventDefault()
   })
+  this.init()
 }
 
 Minesweeper.prototype.init = function () {
@@ -110,10 +109,18 @@ Minesweeper.prototype.check = function (pos, checking, clicked) {
       !cur.activated) || (!clicked && !cur.activated)) {
       if (cur.mine) {
         if (!checking) {
-          this.pos_to_element(pos).classList.add('mine')
-          console.log('You lost!')
           this.status = 'lost'
-          Game.show_message('You lost!', 'Reset')          
+          var h, w
+          for (h = 0; h < this.height; h++) {
+            for (w = 0; w < this.width; w++) {
+              if (this.grid[h][w].mine) {
+                this.pos_to_element([h, w]).className = 'square mine'
+              }
+            }
+          }
+          Game.show_message('You lost!', 'Reset', 'lost', function () {
+            this.init()
+          }.bind(this))
         } else {
           return true
         }
@@ -168,10 +175,7 @@ Minesweeper.prototype.flag = function (pos) {
 
 Minesweeper.prototype.check_win_state = function () {
   var h, w
-  var all_non_mine_squares_activated = false
-  var all_flags_set = false
   var activated_squares = 0
-  var flags_correctly_marked = 0
 
   for (h = 0; h < this.height; h++) {
     for (w = 0; w < this.width; w++) {
@@ -179,23 +183,14 @@ Minesweeper.prototype.check_win_state = function () {
       if (cur.activated) {
         activated_squares++
       }
-      if (cur.flag && cur.mine) {
-        flags_correctly_marked++
-      }
     }
   }
 
   if (activated_squares === (this.height * this.width) - this.mines) {
-    all_non_mine_squares_activated = true
-  }
-  if (flags_correctly_marked === this.mines) {
-    all_flags_set = true
-  }
-
-  if (all_non_mine_squares_activated || all_flags_set) {
-    window.alert('Congratulations! You won!')
-    console.log('You won!')
     this.status = 'won'
+    this.show_message("You've won!", 'Reset', 'won', function () {
+      this.init()
+    }.bind(this))
   }
 }
 
@@ -219,6 +214,20 @@ Minesweeper.prototype.rand = function (min, max, round) {
   }
 }
 
+Minesweeper.prototype.show_message = function (message, button_message, classname, fn) {
+  var dialog_element = document.createElement('div')
+  dialog_element.id = 'message'
+  dialog_element.className = classname
+  var dialog_message_element = document.createElement('div')
+  dialog_message_element.appendChild(document.createTextNode(message))
+  dialog_element.appendChild(dialog_message_element)
+  var dialog_button_element = document.createElement('button')
+  dialog_button_element.appendChild(document.createTextNode(button_message))
+  dialog_element.appendChild(dialog_button_element)
+  this.location.appendChild(dialog_element)
+  document.querySelector('#message > button').addEventListener('mouseup', fn)
+}
+
 var Square = function () {
   this.activated = false
   this.mine = false
@@ -230,19 +239,3 @@ var Game = new Minesweeper({ 'location': '#board',
                              'height': 15,
                              'width': 15,
                              'mines': 35 })
-Game.init()
-Game.add_mines([Math.floor(Game.height / 2), Math.floor(Game.width / 2)])
-
-Minesweeper.prototype.show_message = function (message, button_message) {
-  var dialog_element = document.createElement('div')
-  dialog_element.id = 'message'
-  var dialog_message_element = document.createElement('div')
-  dialog_message_element.appendChild(document.createTextNode(message))
-  dialog_element.appendChild(dialog_message_element)
-  var dialog_button_element = document.createElement('button')
-  dialog_button_element.appendChild(document.createTextNode(button_message))
-  dialog_element.appendChild(dialog_button_element)
-  this.location.appendChild(dialog_element)
-}
-
-//Game.show_message('Minesweeper in Javascript', 'Continue')

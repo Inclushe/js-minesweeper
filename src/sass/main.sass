@@ -10,6 +10,15 @@ body
 *
   box-sizing: border-box
 
+h1, h2, h3, h4, h5, h6
+  margin: 0
+  font-weight: inherit
+
+.title
+  height: 100px
+  line-height: 100px
+  text-align: center
+
 .board_container
   position: absolute
   display: -webkit-flex
@@ -19,7 +28,6 @@ body
   display: flex
   justify-content: center
   align-items: center
-  height: 100%
   width: 100%
 
 #board
@@ -60,7 +68,7 @@ body
       font-size: 25px
       color: $blue500
     &.mine
-      background-color: red !important
+      background-color: $red !important
       box-shadow: none
       &::after
         content: 'X'
@@ -85,16 +93,31 @@ body
 
 #message
   position: absolute
-  margin-top: 10px
+  margin-top: 25px
+  margin-bottom: 25px
   padding-left: 10px
   padding-right: 10px
   height: 50px
   width: auto
-  background: $red400
+  background: $gray200
   line-height: 50px
-  border-radius: 10%
+  border-radius: 10px
   *
     display: inline-block
   button
-    border: none
+    margin-left: 20px
+    border: 1px solid rgba(black, 0.5)
+    background-color: transparent
     font-family: inherit
+    font-size: inherit
+    padding: 5px
+    border-radius: 5px
+    cursor: pointer
+    color: inherit
+  &.lost
+    background-color: $red
+    color: white
+  &.won
+    background-color: $green300
+    color: white
+    
