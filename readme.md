@@ -13,8 +13,9 @@ Don't know how to play Minesweeper? [Google it.](https://www.google.com/webhp?so
 
 
 ### Todo:
-- [ ] - Add mobile support
-- [ ] - Simplify syntax
-- [ ] - Add readme documentation
-- [ ] - Add info
-- [ ] - Add style just for the board?
+- [ ] Add mobile support
+- [ ] Simplify syntax
+- [ ] Add readme documentation
+- [ ] Add info
+- [ ] Add style just for the board?
+- [ ] Turn it into an anonymous function so dirty people can't cheat >:)
